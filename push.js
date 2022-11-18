@@ -11,6 +11,7 @@ adminAndroid.initializeApp({
 var fcmTokens = [
   "eIu61M2_T5a5UBUh_0Rszf:APA91bHMnL5sY94141en0oC-kKrnpjxjAj5XR4C8ED7mWGwrvpXSfYbPa3lsfBqE8JCUzfAQSkltUsd7WHMfywH3RchRqTK5jD31dR8TH4Ch7Jto3lfne1TKB0xPNGIVheJDJYNJ_Das",
   "d_RbtI6TT_yZZdTTqQnohc:APA91bEAl-JJNa4fq3rTD3ZsxRp14R5Rr2tFr2aXokO656F1DeUIKfwfTFMYTcxZvjpWCkiojQjJTuVxe7IqihhqyIo0ScDzNpZSO5Z12n_LpY-o47rVBg_kwwHRLTkzvnGzmD6j40jE",
+  "fgRv9Er2SGS40c7el3RL7g:APA91bFduvc3zmHbxXUWd5NFPWrW1zikY2j-OuUk81PDdVWlAU3WmgShBoWXCtQkl1oiKVeo1-59OFHsvWOCy-aViCS7U7Rz_0HsgZsRT1K34g0W2rC7bOTt0HpHSLHgNIFxRezFDkP0",
 ];
 
 let soundStr = ["살려주세요", "도와주세요", "울음소리"];
