@@ -7,7 +7,7 @@ adminAndroid.initializeApp({
 });
 
 // var androidRegistrationToken =
-//   "d_RbtI6TT_yZZdTTqQnohc:APA91bEAl-JJNa4fq3rTD3ZsxRp14R5Rr2tFr2aXokO656F1DeUIKfwfTFMYTcxZvjpWCkiojQjJTuVxe7IqihhqyIo0ScDzNpZSO5Z12n_LpY-o47rVBg_kwwHRLTkzvnGzmD6j40jE";
+//   "eIu61M2_T5a5UBUh_0Rszf:APA91bHMnL5sY94141en0oC-kKrnpjxjAj5XR4C8ED7mWGwrvpXSfYbPa3lsfBqE8JCUzfAQSkltUsd7WHMfywH3RchRqTK5jD31dR8TH4Ch7Jto3lfne1TKB0xPNGIVheJDJYNJ_Das";
 var fcmTokens = [
   "eIu61M2_T5a5UBUh_0Rszf:APA91bHMnL5sY94141en0oC-kKrnpjxjAj5XR4C8ED7mWGwrvpXSfYbPa3lsfBqE8JCUzfAQSkltUsd7WHMfywH3RchRqTK5jD31dR8TH4Ch7Jto3lfne1TKB0xPNGIVheJDJYNJ_Das",
   "d_RbtI6TT_yZZdTTqQnohc:APA91bEAl-JJNa4fq3rTD3ZsxRp14R5Rr2tFr2aXokO656F1DeUIKfwfTFMYTcxZvjpWCkiojQjJTuVxe7IqihhqyIo0ScDzNpZSO5Z12n_LpY-o47rVBg_kwwHRLTkzvnGzmD6j40jE",
@@ -29,7 +29,7 @@ module.exports = {
     console.log("message push");
     adminAndroid
       .messaging()
-      .send(android_fcm_message)
+      .sendMulticast(android_fcm_message)
       .then(function (response) {
         console.log("push success: ", response);
       })
