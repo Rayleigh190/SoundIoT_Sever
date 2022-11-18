@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+      let soundStr = ["살려주세요", "도와주세요", "울음소리"];
+      var socket = null;
+      var timer = null;
+      $(document).ready(function () {
+        socket = io.connect(); // nodejs->3000port
+        // 데이터를 수신하는 코드
+        socket.on("socket_evt_mqtt", function (data) {
+          var data = JSON.parse(data);
+          $(".mqttlist").html(
+            "<li>위도: " +
+              data.latitude +
+              ", 경도: " +
+              data.longitude +
+              "</li>" +
+              "<li>시간: " +
+              data.created_at +
+              "</li>"
+          );
+        });
+        socket.on("socket_evt_mqtt2", function (data) {
+          var data = JSON.parse(data);
+          $(".mqttlist2").html(
+            "<li>발생소리: " +
+              soundStr[data.soundID - 1] +
+              "</li><li>위도: " +
+              data.latitude +
+              ", 경도: " +
+              data.longitude +
+              "</li>" +
+              "<li>시간: " +
+              data.created_at +
+              "</li>"
+          );
+        });
+        if (timer == null) {
+          timer = window.setInterval("timer1()", 1000); // 1000->1초
+        }
+      });
+      function timer1() {
+        // 1초에 한번씩 nodejs쪽으로 데이터를 달라는 이벤트를 전달하는 역할
+        socket.emit("socket_evt_mqtt", JSON.stringify({}));
+        socket.emit("socket_evt_mqtt2", JSON.stringify({}));
+        console.log("----------");
+      }
+    </script>
+    <style type="text/css">
+      body {
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body bgcolor="#FFE200">
+    <fieldset>
+      <legend>IoT를 활용한 지능형 소리분석 프로젝트</legend>
+      <h2>socket 이용한 GPS(위도, 경도) 모니터링</h2>
+      <div id="msg">
+        <div id="mqtt_logs">
+          <ul class="mqttlist"></ul>
+        </div>
+      </div>
+      <hr />
+      <h2>socket 이용한 발생소리 및 위치 모니터링</h2>
+      <div id="mqtt_logs">
+        <ul class="mqttlist2"></ul>
+      </div>
+    </fieldset>
+  </body>
+</html>
