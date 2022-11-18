@@ -7,7 +7,7 @@ adminAndroid.initializeApp({
 });
 
 var androidRegistrationToken =
-  "eswGo-ibSkajUhnRpSFUHO:APA91bHsrLm1qtSSdTM95GZ0mJJuu87Z56PqMw42bweUU42twlAVCXgCyaR-tl__km_VPSgLgaztv5dT4qmnsl3kga-5Kta-Q_wB4Mur5o4DNjw52NpboSeW1wWiHRnuQGdUyA3QhpOH";
+  "d_RbtI6TT_yZZdTTqQnohc:APA91bEAl-JJNa4fq3rTD3ZsxRp14R5Rr2tFr2aXokO656F1DeUIKfwfTFMYTcxZvjpWCkiojQjJTuVxe7IqihhqyIo0ScDzNpZSO5Z12n_LpY-o47rVBg_kwwHRLTkzvnGzmD6j40jE";
 
 let soundStr = ["살려주세요", "도와주세요", "울음소리"];
 
