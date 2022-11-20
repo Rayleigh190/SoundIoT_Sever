@@ -16,8 +16,10 @@ module.exports = {
     var android_fcm_message = {
       notification: {
         title:
-          "홍길동님의 '" + soundStr[soundID - 1] + "' 소리가 인식 됐습니다.",
-        body: "홍길동님의 위치를 확인해 보세요!",
+          "\uD83D\uDEA8 최우진님의 '" +
+          soundStr[soundID - 1] +
+          "' 소리가 인식 됐습니다.",
+        body: "최우진님의 위치를 확인해 보세요!",
       },
       tokens: androidRegistrationToken,
     };
