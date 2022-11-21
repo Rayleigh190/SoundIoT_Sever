@@ -24,11 +24,11 @@ module.exports = {
       tokens: androidRegistrationToken,
     };
     await Token.find(function (err, data) {
-      console.log("get token");
+      // console.log("get token");
       if (err) {
         console.log(err);
       } else {
-        console.log(data);
+        // console.log(data);
         for (let i in data) {
           var obj = JSON.stringify(data[i]);
           androidRegistrationToken.push(JSON.parse(obj).user_token);
@@ -39,7 +39,7 @@ module.exports = {
             .messaging()
             .sendMulticast(android_fcm_message)
             .then(function (response) {
-              console.log("push success: ", response);
+              // console.log("push success: ", response);
               androidRegistrationToken.length = 0;
             })
             .catch(function (err) {

@@ -16,6 +16,11 @@ const soundSchema = new Schema({
     type: Number,
     required: true,
   },
+  address: {
+    // 주소
+    type: String,
+    required: true,
+  },
   created_at: {
     type: Date,
     default: Date.now,

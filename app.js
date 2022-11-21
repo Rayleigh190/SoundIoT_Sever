@@ -7,6 +7,8 @@ const express = require("express");
 const app = express();
 const http = require("http");
 const mongoose = require("mongoose");
+const request = require("request");
+var async = require("async");
 const deviceRouter = require("./routes/devices");
 const bodyParser = require("body-parser");
 // require("dotenv/config");
@@ -27,7 +29,7 @@ client.on("connect", () => {
   client.subscribe(topic_list, { qos: 1 });
 });
 
-client.on("message", (topic, message) => {
+client.on("message", async function (topic, message) {
   if (topic == "path") {
     var obj = JSON.parse(message);
     obj.created_at = setDate();
@@ -47,20 +49,36 @@ client.on("message", (topic, message) => {
     var obj = JSON.parse(message);
     obj.created_at = setDate();
     console.log(obj);
+    // 좌표로 주소 받아오기
+    var addressData;
+    try {
+      addressData = await getAddress(obj.latitude, obj.longitude);
+      console.log("Get address : " + addressData);
+    } catch (err) {
+      console.log(err);
+    }
     const sound = new Sound({
       soundID: obj.soundID,
+      latitude: obj.latitude,
+      longitude: obj.longitude,
+      address: addressData,
+      created_at: obj.created_at,
+    });
+    const path = new Path({
       latitude: obj.latitude,
       longitude: obj.longitude,
       created_at: obj.created_at,
     });
     try {
-      const saveSound = sound.save();
+      sound.save();
+      path.save();
       console.log("insert OK");
     } catch (err) {
       console.log({ message: err });
     }
     // 푸시 알람 보내기
     Push.send(obj.soundID);
+    //
   }
 });
 
@@ -88,11 +106,6 @@ io.on("connection", (socket) => {
         socket.emit("socket_evt_mqtt2", JSON.stringify(obj[0]));
       });
   });
-
-  // socket.on("socket_evt_led", (data) => {
-  //   var obj = JSON.parse(data);
-  //   client.publish("led", obj.led + ""); // "1", "2"
-  // });
 });
 
 server.listen(3000, (err) => {
@@ -120,4 +133,39 @@ function setDate() {
   var seconds = date.getSeconds();
   dateObj = new Date(Date.UTC(year, month, today, hours, minutes, seconds));
   return dateObj;
+}
+
+function getAddress(lat, lon) {
+  return new Promise(function (resolve, reject) {
+    const options = {
+      uri:
+        "https://dapi.kakao.com/v2/local/geo/coord2address.json?x=" +
+        lon +
+        "&y=" +
+        lat,
+      headers: {
+        Authorization: "KakaoAK ###",
+      },
+    };
+    var addressData;
+    request.get(options, function (err, response, body) {
+      let jsonData = JSON.parse(body);
+      if (jsonData.documents[0] != undefined) {
+        if (jsonData.documents[0].road_address != null) {
+          // console.log(jsonData.documents[0].road_address.address_name);
+          addressData = jsonData.documents[0].road_address.address_name;
+        } else {
+          // console.log(jsonData.documents[0].address.address_name);
+          addressData = jsonData.documents[0].address.address_name;
+        }
+      } else {
+        addressData = "주소가 정의 되지 않은 지역입니다.";
+      }
+      if (!err) {
+        resolve(addressData);
+      } else {
+        reject(err);
+      }
+    });
+  });
 }
