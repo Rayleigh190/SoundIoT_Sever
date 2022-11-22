@@ -19,7 +19,7 @@ router.get("/path", function (req, res, next) {
   today.setUTCHours(0, 0, 0, 0);
   console.log("request path data");
   Path.find({
-    created_at: { $gte: kr_curr },
+    created_at: { $gte: today },
   })
     .sort({ created_at: -1 }) //.limit(10)
     .then((data) => {
