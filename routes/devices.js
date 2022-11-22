@@ -8,21 +8,26 @@ router.get("/sound", function (req, res, next) {
   console.log("request sound data");
   Sound.find({})
     .sort({ created_at: -1 })
-    .limit(10)
+    .limit(30)
     .then((data) => {
       res.send(JSON.stringify(data));
     });
 });
 
 router.get("/path", function (req, res, next) {
-  var today = new Date();
-  today.setUTCHours(0, 0, 0, 0); // https://stackoverflow.com/questions/26591079/date-to-json-number-after-date
+  // 1. 현재 시간(Locale)
+  const curr = new Date();
+  // 2. UTC 시간 계산
+  const utc = curr.getTime() + curr.getTimezoneOffset() * 60 * 1000;
+  // 3. UTC to KST (UTC + 9시간)
+  const KR_TIME_DIFF = 9 * 60 * 60 * 1000; //한국 시간(KST)은 UTC시간보다 9시간 더 빠르므로 9시간을 밀리초 단위로 변환.
+  const kr_curr = new Date(utc + KR_TIME_DIFF); //UTC 시간을 한국 시간으로 변환하기 위해 utc 밀리초 값에 9시간을 더함.
+  kr_curr.setHours(0, 0, 0, 0);
   console.log("request path data");
   Path.find({
-    created_at: { $gte: today },
+    created_at: { $gte: kr_curr },
   })
-    .sort({ created_at: -1 })
-    .limit(10)
+    .sort({ created_at: -1 }) //.limit(10)
     .then((data) => {
       res.send(JSON.stringify(data));
     });
