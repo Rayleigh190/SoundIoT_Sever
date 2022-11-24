@@ -20,6 +20,7 @@ router.get("/path", function (req, res, next) {
   console.log("request path data");
   Path.find({
     created_at: { $gte: today },
+    latitude: { $ne: 1000 },
   })
     .sort({ created_at: -1 }) //.limit(10)
     .then((data) => {
