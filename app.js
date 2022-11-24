@@ -38,6 +38,7 @@ client.on("message", async function (topic, message) {
       latitude: obj.latitude,
       longitude: obj.longitude,
       created_at: obj.created_at,
+      inflow: "path",
     });
     try {
       const savePath = path.save();
@@ -68,6 +69,7 @@ client.on("message", async function (topic, message) {
       latitude: obj.latitude,
       longitude: obj.longitude,
       created_at: obj.created_at,
+      inflow: "sound",
     });
     try {
       sound.save();

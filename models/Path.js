@@ -15,6 +15,10 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  inflow: {
+    type: String,
+    require: true,
+  },
 });
 
 module.exports = mongoose.model("Path", userSchema);
