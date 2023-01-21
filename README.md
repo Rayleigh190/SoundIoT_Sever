@@ -1,3 +1,5 @@
+![Louder thumbnail image](https://user-images.githubusercontent.com/86937253/213867525-3fceb4ef-0513-4f2f-a1dd-a0e43be13e56.png)
+
 # 2022 - Louder Project (Server)
 
 2022년 2학기 캡스톤디자인에서 진행한 산학협력 프로젝트입니다.
@@ -17,9 +19,11 @@ IoT 장치를 이용해 특정 위험 소리를 인식하여 보호자에게 알
 
 이 서버의 역할은 MQTT 통신으로 IoT 장치로 부터 데이터를 받고 가공 및 저장하여 사용자에게 알림을 보내는 것을 주목적으로한다.
 
-**구현 핵심 :** 엣지 디바이스에서 머신러닝으로 소리를 인식해 알림을 보낸다.
+**구현 핵심 :** 엣지 디바이스에서 머신러닝으로 소리를 인식해 알림을 보낸다.   
 
-[모바일(Android) 레파지토리](https://github.com/Starlight258/louder)
+[모바일(Android) 레파지토리](https://github.com/Starlight258/louder)   
+
+**발표 PPT :** https://docs.google.com/presentation/d/1cPogXJWkkGKKAY0E7DA0lmUZ9r6wA2PzA0qGkSGF7tI/edit?usp=sharing
 
 ## Function
 
