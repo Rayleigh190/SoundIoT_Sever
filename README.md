@@ -1,4 +1,4 @@
-![Louder thumbnail image](https://user-images.githubusercontent.com/86937253/213867525-3fceb4ef-0513-4f2f-a1dd-a0e43be13e56.png)
+![louder표지](https://github.com/Rayleigh190/SoundIoT_Sever/assets/86937253/73503b04-fc0b-4b87-8cdc-346f2637fbf4)
 
 # 2022 - Louder Project (Server)
 
@@ -23,7 +23,7 @@ IoT 장치를 이용해 특정 위험 소리를 인식하여 보호자에게 알
 
 [모바일(Android) 레파지토리](https://github.com/Starlight258/louder)   
 
-**발표 PPT :** https://docs.google.com/presentation/d/1cPogXJWkkGKKAY0E7DA0lmUZ9r6wA2PzA0qGkSGF7tI/edit?usp=sharing
+**발표 PPT :** [링크](https://docs.google.com/presentation/d/1Wol2BhwuaqlUSwQajoeKeCQfkUSnu_paPuKn1x9q1TE/edit?usp=sharing)
 
 ## Function
 
